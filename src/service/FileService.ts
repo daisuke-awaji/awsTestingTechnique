@@ -18,3 +18,4 @@ export class FileService {
     public createBucket = async (bucketName: string) => {
         return await this.s3.createBucket({ Bucket: bucketName }).promise();
     }
+}
