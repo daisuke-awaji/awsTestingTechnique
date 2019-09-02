@@ -16,15 +16,15 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-      # LocalStackとMySQLコンテナをビルドする
-      - run: docker-compose -f ./docker/docker-compose.yaml build
-      # LocalStackとMySQLコンテナを起動する
-      - run: docker-compose -f ./docker/docker-compose.yaml up -d
+      # LocalStackコンテナをビルドする
+      - run: docker-compose -f ./docker-compose.yaml build
+      # LocalStackコンテナを起動する
+      - run: docker-compose -f ./docker-compose.yaml up -d
       - run: npm install
-      # LocalStackとMySQLコンテナが起動するまで待つ
+      # LocalStackコンテナが起動するまで待つ
       - run:
           name: sleep for waiting launch db and localstack
-          command: sleep 30
+          command: sleep 10
       - save_cache:
           paths:
             - node_modules
