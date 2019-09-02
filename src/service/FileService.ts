@@ -14,4 +14,7 @@ export class FileService {
     public getObject = async (bucketName: string, fileName: string) => {
         return await this.s3.getObject({ Bucket: bucketName, Key: fileName }).promise();
     }
-}
+
+    public createBucket = async (bucketName: string) => {
+        return await this.s3.createBucket({ Bucket: bucketName }).promise();
+    }
