@@ -2,7 +2,7 @@ import { FileService } from '../service';
 import * as AWS from 'aws-sdk';
 
 let fileService: FileService;
-beforeAll(() => {
+beforeAll(async () => {
     const s3 = new AWS.S3({
         accessKeyId: 'xxx',
         secretAccessKey: 'xxx',
@@ -11,7 +11,7 @@ beforeAll(() => {
         s3ForcePathStyle: true
     });
     fileService = new FileService(s3);
-    s3.createBucket({ Bucket: 'my-bucket' })
+    await s3.createBucket({ Bucket: 'my-bucket' }).promise();
 });
 
 test('ファイルアップロードしてダウンロードする', async () => {
